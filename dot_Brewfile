@@ -1,0 +1,13 @@
+# Homebrew Bundle file — installed packages for both macOS and Linux (Linuxbrew).
+# Managed by chezmoi as ~/.Brewfile and applied via `brew bundle --file=~/.Brewfile`
+# in run_onchange_install_packages.sh.tmpl.
+#
+# Add/remove formulae here; the install script picks up changes automatically.
+
+brew "git"
+brew "zsh"
+brew "k9s"
+brew "kubectl"
+brew "pyenv"
+brew "pnpm"
+brew "opencode"

@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Re-run this script when dot_zshrc.tmpl or the Brewfile changes
+# dot_zshrc.tmpl hash: {{ include "dot_zshrc.tmpl" | sha256sum }}
+# Brewfile hash: {{ include "dot_Brewfile" | sha256sum }}
+
+ZSH="${ZSH:-$HOME/.oh-my-zsh}"
+ZSH_CUSTOM="${ZSH_CUSTOM:-$ZSH/custom}"
+
+# Locate brew across the known install prefixes (mirrors dot_zshrc.tmpl detection)
+find_brew() {
+  for candidate in \
+    /opt/homebrew/bin/brew \
+    /usr/local/bin/brew \
+    /home/linuxbrew/.linuxbrew/bin/brew \
+    "$HOME/.linuxbrew/bin/brew"; do
+    if [ -x "$candidate" ]; then
+      echo "$candidate"
+      return 0
+    fi
+  done
+  return 1
+}
+
+echo "==> Checking Homebrew installation..."
+
+BREW_BIN="$(find_brew || true)"
+
+if [ -z "$BREW_BIN" ]; then
+  echo "Installing Homebrew..."
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  BREW_BIN="$(find_brew || true)"
+else
+  echo "Homebrew is already installed at $BREW_BIN."
+fi
+
+if [ -n "$BREW_BIN" ]; then
+  eval "$("$BREW_BIN" shellenv)"
+else
+  echo "Warning: could not locate Homebrew after install; skipping brew package installs." >&2
+fi
+
+# Packages are declared in the Brewfile (~/.Brewfile), managed by chezmoi.
+BREWFILE="$HOME/.Brewfile"
+
+if command -v brew >/dev/null 2>&1 && [ -f "$BREWFILE" ]; then
+  echo "==> Installing brew packages from $BREWFILE"
+  brew bundle --file="$BREWFILE"
+fi
+
+echo "==> Checking Oh My Zsh and plugins installation..."
+
+# 1. Install Oh My Zsh if missing
+if [ ! -d "$ZSH" ]; then
+  echo "Installing Oh My Zsh into $ZSH..."
+  git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git "$ZSH"
+else
+  echo "Oh My Zsh is already installed."
+fi
+
+# Helper function to clone repository if target directory does not exist
+clone_if_missing() {
+  local repo_url="$1"
+  local target_dir="$2"
+  local name="$3"
+
+  if [ ! -d "$target_dir" ]; then
+    echo "Cloning $name into $target_dir..."
+    mkdir -p "$(dirname "$target_dir")"
+    git clone --depth=1 "$repo_url" "$target_dir"
+  else
+    echo "$name is already installed."
+  fi
+}
+
+# 2. Powerlevel10k theme
+clone_if_missing \
+  "https://github.com/romkatv/powerlevel10k.git" \
+  "$ZSH_CUSTOM/themes/powerlevel10k" \
+  "Powerlevel10k"
+
+# 3. Custom Zsh plugins
+clone_if_missing \
+  "https://github.com/zsh-users/zsh-autosuggestions" \
+  "$ZSH_CUSTOM/plugins/zsh-autosuggestions" \
+  "zsh-autosuggestions"
+
+clone_if_missing \
+  "https://github.com/zsh-users/zsh-syntax-highlighting.git" \
+  "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" \
+  "zsh-syntax-highlighting"
+
+echo "==> Oh My Zsh plugins and theme are up to date."

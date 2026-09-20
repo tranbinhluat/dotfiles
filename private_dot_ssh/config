@@ -1,0 +1,11 @@
+Host ssh.bytedart.io.vn
+  User luattranb
+  ProxyCommand cloudflared access ssh --hostname %h
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_personal_hclap
+Host git.homecredit.vn
+  HostName git.homecredit.vn 
+  User git
+  IdentityFile ~/.ssh/id_rsa_personal_hclap
