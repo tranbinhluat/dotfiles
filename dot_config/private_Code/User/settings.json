@@ -1,0 +1,5 @@
+{
+    "explorer.confirmDelete": false,
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.defaultProfile.osx": "zsh"
+}

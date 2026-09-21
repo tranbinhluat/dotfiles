@@ -91,4 +91,45 @@ clone_if_missing \
   "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" \
   "zsh-syntax-highlighting"
 
+# Install needed fonts for powerlevel10k (MesloLGS NF)
+echo "==> Checking Powerlevel10k fonts..."
+
+{{- if eq .chezmoi.os "darwin" }}
+FONT_DIR="$HOME/Library/Fonts"
+{{- else }}
+FONT_DIR="$HOME/.local/share/fonts"
+{{- end }}
+
+mkdir -p "$FONT_DIR"
+
+FONTS=(
+  "MesloLGS NF Regular.ttf"
+  "MesloLGS NF Bold.ttf"
+  "MesloLGS NF Italic.ttf"
+  "MesloLGS NF Bold Italic.ttf"
+)
+
+BASE_URL="https://github.com/romkatv/powerlevel10k-media/raw/master"
+
+for font in "${FONTS[@]}"; do
+  if [ ! -f "$FONT_DIR/$font" ]; then
+    echo "Downloading $font..."
+    encoded_font="${font// /%20}"
+    wget -q -P "$FONT_DIR" "$BASE_URL/$encoded_font"
+  fi
+done
+
+{{- if ne .chezmoi.os "darwin" }}
+if command -v fc-cache >/dev/null 2>&1; then
+  echo "==> Updating font cache..."
+  if fc-cache -f "$FONT_DIR"; then
+    echo "==> Font cache updated successfully."
+  else
+    echo "Warning: fc-cache failed." >&2
+  fi
+else
+  echo "fc-cache not found, skipping font cache refresh."
+fi
+{{- end }}
+
 echo "==> Oh My Zsh plugins and theme are up to date."
