@@ -1,0 +1,12 @@
+[user]
+    name = bytedart
+    email = tranbinhluat@gmail.com
+
+[http]
+    sslBackend = openssl
+
+
+[core]
+    autocrlf = false
+    symlinks = true
+	editor = nano
