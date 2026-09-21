@@ -1,0 +1,13 @@
+tunnel: ives-tunnel
+credentials-file: {{ .chezmoi.homeDir }}/.cloudflared/8eef20fc-f875-4f7d-8538-a4f433b989dd.json
+
+ingress:
+  - hostname: n8n.bytedart.io.vn
+    service: http://localhost:80
+  - hostname: bytedart.io.vn
+    service: http://localhost:80
+  - hostname: n8n-grace.bytedart.io.vn
+    service: http://localhost:80
+  - hostname: zalocrm.bytedart.io.vn
+    service: http://localhost:80
+  - service: http_status:404
