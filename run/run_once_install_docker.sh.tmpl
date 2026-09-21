@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{- if eq .chezmoi.os "linux" }}
+# Install native Docker Engine on Linux (CLI + dockerd daemon + compose/buildx plugins)
+if ! command -v docker >/dev/null 2>&1; then
+  echo "==> Docker not detected. Installing Docker Engine..."
+
+  # Official Docker installation script (supports Ubuntu, Debian, Fedora, CentOS, RHEL, etc.)
+  curl -fsSL https://get.docker.com | sudo sh
+
+  # Start and enable docker service via systemd if available
+  if command -v systemctl >/dev/null 2>&1; then
+    echo "==> Enabling and starting Docker systemd service..."
+    sudo systemctl enable --now docker
+  fi
+
+  # Add current user to docker group for rootless CLI access
+  CURRENT_USER="${SUDO_USER:-$USER}"
+  if [ -n "$CURRENT_USER" ] && [ "$CURRENT_USER" != "root" ]; then
+    echo "==> Adding $CURRENT_USER to docker group..."
+    sudo usermod -aG docker "$CURRENT_USER" || true
+    echo "==> Note: You may need to log out and log back in for 'docker' group permissions to take effect."
+  fi
+
+  echo "==> Docker Engine installed successfully."
+else
+  echo "==> Docker is already installed: $(docker --version)"
+fi
+{{- end }}
+

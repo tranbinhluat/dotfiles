@@ -20,4 +20,13 @@ brew "cmake"
 brew "cloudflared"
 brew "uv"
 brew "node"
-brew "kubectl"
+
+{{- if eq .chezmoi.os "darwin" }}
+
+# macOS CLI-only Docker environment (Colima runtime + Docker CLI & plugins)
+brew "colima"
+brew "docker"
+brew "docker-compose"
+brew "docker-buildx"
+{{- end }}
+
