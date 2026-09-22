@@ -1,0 +1,13 @@
+[Unit]
+Description=Cloudflare Tunnel (ives-tunnel)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/home/linuxbrew/.linuxbrew/bin/cloudflared tunnel --config %h/.cloudflared/ives-service-config.yml run ives-tunnel
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=default.target
