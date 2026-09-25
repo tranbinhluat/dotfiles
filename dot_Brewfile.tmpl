@@ -30,5 +30,10 @@ brew "colima"
 brew "docker"
 brew "docker-compose"
 brew "docker-buildx"
+
+# set default app folder for macos cask
+cask_args appdir: "/opt/app"
+
+cask "iterm2"
 {{- end }}
 
