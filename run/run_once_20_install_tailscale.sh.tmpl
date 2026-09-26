@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{- if eq .chezmoi.os "linux" }}
+
+echo "==> Setting tailscale"
+
+curl -fsSL https://tailscale.com/install.sh | sh
+
+sudo tailscale up 
+
+{{- end }}
