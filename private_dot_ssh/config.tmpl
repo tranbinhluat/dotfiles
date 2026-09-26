@@ -1,0 +1,19 @@
+{{- if .is_company_device }}
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+
+Host bytedart 
+    HostName 100.68.141.73
+    User bytedart
+    IdentityFile ~/.ssh/id_ed25519
+
+{{- else}}
+
+Host *
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519
+
+{{- end}}
