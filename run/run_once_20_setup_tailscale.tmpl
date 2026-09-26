@@ -1,0 +1,25 @@
+#!/bin/bash
+
+{{ if eq .chezmoi.os "linux" }}
+# ==========================================
+# Linux Host Setup (Debian/Ubuntu based)
+# ==========================================
+echo "Setting up Linux Host..."
+
+
+# Install xrdp (Remote Desktop Protocol server)
+sudo apt-get update
+sudo apt-get install -y xrdp
+
+# Add xrdp user to the ssl-cert group (fixes connection issues on Ubuntu)
+sudo adduser xrdp ssl-cert
+
+# Ensure xrdp starts on boot and is running
+sudo systemctl enable --now xrdp
+
+# Optional: Restrict RDP access to ONLY the Tailscale network (Tailscale IPs start with 100.)
+# Uncomment if using UFW firewall:
+# sudo ufw allow in on tailscale0 to any port 3389
+
+echo "Linux setup complete. Run 'sudo tailscale up' to authenticate this machine."
+{{ end }}
