@@ -21,7 +21,7 @@ brew "cloudflared"
 brew "uv"
 brew "node"
 brew "age" # Simple, modern, secure file encryption
-
+brew "tailscale"
 
 {{- if eq .chezmoi.os "darwin" }}
 
@@ -34,6 +34,13 @@ brew "docker-buildx"
 # set default app folder for macos cask
 cask_args appdir: "/opt/app"
 
-cask "iterm2"
+cask "iterm2" # terminal
+
+cask "microsoft-remote-desktop" # remote dekstop
 {{- end }}
+
+
+{{- if eq .chezmoi.os "linux" }}
+
+{{- end}}
 
