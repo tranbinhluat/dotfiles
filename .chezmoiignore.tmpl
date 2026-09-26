@@ -9,6 +9,12 @@ README.md
 
 backups/   # ignore the backups folder, but not its contents
 backups/** # ignore the contents of backups folder but not the folder itself
+run/
 
-
-manifest-apt-linux-only.txt
+{{ if .is_company_device }}
+# Ignore personal configs/folders on company devices
+.cloudflared
+.cloudflared/**
+.ssh/id_personal*
+.config/systemd*
+{{ end }}
