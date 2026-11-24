@@ -1,0 +1,17 @@
+{{ if not .is_company_device }}
+[user]
+    name = luattb
+    email = tranbinhluat@gmail.com
+
+{{- end}}
+[http]
+    sslBackend = openssl
+
+[alias]
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) <%an>%Creset' --abbrev-commit
+    review = "!sh -c 'git push origin HEAD:refs/for/master%r=$0'"
+    rbm = "!f() {\n  base=\"${1:-master}\"\n  cur=$(git rev-parse --abbrev-ref HEAD) || exit 1\n  if [ \"$cur\" = \"$base\" ]; then\n    echo \"Đang ở $base rồi, hãy chuyển sang branch feature trước.\" >&2\n    exit 1\n  fi\n  git checkout \"$base\" &&\n  git pull --ff-only origin \"$base\" &&\n  git checkout \"$cur\" &&\n  git rebase \"$base\"\n}; f"
+[core]
+    autocrlf = false
+    symlinks = true
+	editor = nano

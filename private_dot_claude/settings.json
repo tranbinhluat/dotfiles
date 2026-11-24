@@ -1,0 +1,205 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
+  "permissions": {
+    "allow": [
+      "mcp__notion__notion-search",
+      "mcp__notion__notion-fetch",
+      "mcp__notion__notion-query-data-sources",
+      "mcp__notion__notion-query-multiple-data-sources",
+      "mcp__notion__notion-get-self",
+      "mcp__notion__notion-get-users",
+      "mcp__notion__notion-get-comments",
+      "mcp__notion__notion-list-page-backlinks",
+      "mcp__claude_ai_Notion__notion-search",
+      "mcp__claude_ai_Notion__notion-fetch",
+      "mcp__claude_ai_Notion__notion-query-data-sources",
+      "mcp__claude_ai_Notion__notion-query-multiple-data-sources",
+      "mcp__claude_ai_Notion__notion-get-self",
+      "mcp__claude_ai_Notion__notion-get-users",
+      "mcp__claude_ai_Notion__notion-get-teams",
+      "mcp__claude_ai_Notion__notion-get-groups",
+      "mcp__claude_ai_Notion__notion-get-comments",
+      "mcp__claude_ai_Notion__notion-get-tool-access",
+      "mcp__claude_ai_Notion__notion-get-version-changes",
+      "mcp__claude_ai_Notion__notion-view-version",
+      "mcp__claude_ai_Notion__notion-list-page-backlinks",
+      "mcp__claude_ai_Notion__notion-list-private-pages",
+      "mcp__claude_ai_Notion__notion-list-shared-pages",
+      "mcp__claude_ai_Notion__notion-list-favorite-pages",
+      "mcp__claude_ai_Notion__notion-list-recent-pages",
+      "mcp__claude_ai_Notion__notion-memory-search",
+      "mcp__claude_ai_Notion__notion-get-sidebar-tabs",
+      "mcp__claude_ai_Notion__notion-calendar-list-calendars",
+      "mcp__claude_ai_Notion__notion-calendar-list-events"
+    ],
+    "deny": [
+      "mcp__notion__notion-delete-pages",
+      "mcp__notion__notion-delete-databases",
+      "mcp__notion__notion-delete-comment",
+      "mcp__notion__notion-update-data-source",
+      "mcp__notion__notion-create-database",
+      "mcp__notion__notion-restore-version",
+      "mcp__notion__notion-restore-pages",
+      "mcp__claude_ai_Notion__notion-delete-pages",
+      "mcp__claude_ai_Notion__notion-delete-databases",
+      "mcp__claude_ai_Notion__notion-delete-comment",
+      "mcp__claude_ai_Notion__notion-update-data-source",
+      "mcp__claude_ai_Notion__notion-create-database",
+      "mcp__claude_ai_Notion__notion-restore-version",
+      "mcp__claude_ai_Notion__notion-restore-pages"
+    ],
+    "ask": [
+      "mcp__notion__notion-create-pages",
+      "mcp__notion__notion-update-page",
+      "mcp__notion__notion-create-comment",
+      "mcp__notion__notion-update-comment",
+      "mcp__notion__notion-move-pages",
+      "mcp__notion__notion-duplicate-page",
+      "mcp__notion__notion-create-view",
+      "mcp__notion__notion-update-view",
+      "mcp__claude_ai_Notion__notion-create-pages",
+      "mcp__claude_ai_Notion__notion-update-page",
+      "mcp__claude_ai_Notion__notion-create-comment",
+      "mcp__claude_ai_Notion__notion-update-comment",
+      "mcp__claude_ai_Notion__notion-move-pages",
+      "mcp__claude_ai_Notion__notion-duplicate-page",
+      "mcp__claude_ai_Notion__notion-create-view",
+      "mcp__claude_ai_Notion__notion-update-view",
+      "mcp__claude_ai_Notion__notion-create-folder",
+      "mcp__claude_ai_Notion__notion-update-folder",
+      "mcp__claude_ai_Notion__notion-create-attachment",
+      "mcp__claude_ai_Notion__notion-create-file-upload",
+      "mcp__claude_ai_Notion__notion-create-meeting-note",
+      "mcp__claude_ai_Notion__notion-link-meeting-note-to-calendar-event",
+      "mcp__claude_ai_Notion__notion-convert-to-meetings-database",
+      "mcp__claude_ai_Notion__notion-convert-page-to-skill",
+      "mcp__claude_ai_Notion__notion-upload-skill",
+      "mcp__claude_ai_Notion__notion-update-skill-settings",
+      "mcp__claude_ai_Notion__notion-update-sidebar-tabs",
+      "mcp__claude_ai_Notion__notion-update-page-favorites",
+      "mcp__claude_ai_Notion__notion-create-suggested-edit",
+      "mcp__claude_ai_Notion__notion-resolve-suggested-edit",
+      "mcp__claude_ai_Notion__notion-set-comment-reaction",
+      "mcp__claude_ai_Notion__notion-set-discussion-resolved",
+      "mcp__claude_ai_Notion__notion-spawn-session",
+      "mcp__claude_ai_Notion__notion-send-message-to-session",
+      "mcp__claude_ai_Notion__notion-stop-session",
+      "mcp__claude_ai_Notion__notion-calendar-create-events",
+      "mcp__claude_ai_Notion__notion-calendar-update-events",
+      "mcp__claude_ai_Notion__notion-calendar-cancel-events"
+    ]
+  },
+  "model": "sonnet",
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/luat.tran/.config/iterm2/it2\" handle-agent-hook"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/luat.tran/.config/iterm2/it2\" handle-agent-hook"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/luat.tran/.config/iterm2/it2\" handle-agent-hook"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/luat.tran/.config/iterm2/it2\" handle-agent-hook"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/luat.tran/.config/iterm2/it2\" handle-agent-hook"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/luat.tran/.config/iterm2/it2\" handle-agent-hook"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/luat.tran/.config/iterm2/it2\" handle-agent-hook"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/luat.tran/.config/iterm2/it2\" handle-agent-hook"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/luat.tran/.config/iterm2/it2\" handle-agent-hook"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/luat.tran/.config/iterm2/it2\" handle-agent-hook"
+          }
+        ]
+      }
+    ]
+  },
+  "modelSettings": {
+    "claude-sonnet-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "theme": "auto"
+}
